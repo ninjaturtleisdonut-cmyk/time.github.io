@@ -48,12 +48,38 @@
       const isMatch = JSON.stringify(sortedCorrect) === JSON.stringify(sortedInputs);
 
       // 🔽 EDIT THESE MESSAGES 🔽
-      const successMessage = "在Складка";
+      const successMessage = "在Складка RGB";
       const failMessage = "...";
 
       document.getElementById("msg").innerHTML = isMatch ? successMessage : failMessage;
     }
   </script>
 
+  <!-- SECRET SECTION -->
+<div id="secretBox" style="margin-top: 500px; padding: 20px; border: 2px solid #e32636; border-radius: 10px; background: #111; color: #fff; text-align: center;">
+  <h3 style="color: #e32636;">GETTINGCLOSER</h3>
+  <input id="s1" placeholder="WORD 1" style="padding: 6px 10px; margin: 4px; background:#222; color:#fff; border:1px solid #e32636; border-radius:5px;">
+  <input id="s2" placeholder="WORD 2" style="padding: 6px 10px; margin: 4px; background:#222; color:#fff; border:1px solid #e32636; border-radius:5px;">
+  <br><br>
+  <button onclick="checkSecret()" style="padding: 6px 12px; background:#e32636; color:#fff; border:none; border-radius:5px; cursor:pointer;">Unlock</button>
+  <p id="secretMsg"></p>
+</div>
+
+<script>
+  function checkSecret() {
+    const secretWords = ["Alizarin", "Crimson"]; // the correct words
+    const inputs = [
+      document.getElementById("s1").value.trim().toLowerCase(),
+      document.getElementById("s2").value.trim().toLowerCase()
+    ];
+    
+    const isMatch = JSON.stringify([...secretWords].sort()) === JSON.stringify([...inputs].sort());
+    
+    document.getElementById("secretMsg").innerHTML = isMatch 
+      ? "desperation01" 
+      : "❌ Nothing happens...";
+  }
+</script>
+  
 </body>
 </html>
