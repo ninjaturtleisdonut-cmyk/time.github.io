@@ -91,7 +91,7 @@
       ];
       const isMatch = JSON.stringify([...secretWords].sort()) === JSON.stringify([...sInputs].sort());
       document.getElementById("secretMsg").innerHTML = isMatch
-        ? "desperation"
+        ? "desperation - you are making progress"
         : "nothinghappens";
     }
   </script>
