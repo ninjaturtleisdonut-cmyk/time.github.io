@@ -8,10 +8,40 @@
       font-family: Arial, sans-serif;
       padding: 40px;
       text-align: center;
+      background-color: #111;
+      color: #eee;
     }
     input {
       margin: 6px;
       padding: 6px 10px;
+      border-radius: 5px;
+      border: none;
+      font-size: 16px;
+    }
+    button {
+      padding: 8px 14px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      border: none;
+      background-color: #e32636;
+      color: #fff;
+    }
+    /* Secret box styling */
+    #secretBox {
+      margin-top: 50px;
+      padding: 20px;
+      border: 2px solid #e32636;
+      border-radius: 10px;
+      background: #111;
+      color: #fff;
+      text-align: center;
+    }
+    #secretBox input {
+      background: #222;
+      color: #fff;
+      border: 1px solid #e32636;
+      border-radius: 5px;
     }
   </style>
 </head>
@@ -28,58 +58,42 @@
 
   <p id="msg"></p>
 
+  <!-- SECRET BOX -->
+  <div id="secretBox">
+    <h3 style="color: #e32636;">unearthed</h3>
+    <input id="s1" placeholder="WORD 1">
+    <input id="s2" placeholder="WORD 2">
+    <br><br>
+    <button onclick="checkSecret()">Unlock</button>
+    <p id="secretMsg"></p>
+  </div>
+
   <script>
     function check() {
-      // 🔽 EDIT YOUR THREE CORRECT WORDS HERE (lowercase) 🔽
       const correctWords = ["clubstep", "silent", "unknown"];
-
-      // Get player inputs, lowercase them
       const inputs = [
         document.getElementById("w1").value.trim().toLowerCase(),
         document.getElementById("w2").value.trim().toLowerCase(),
         document.getElementById("w3").value.trim().toLowerCase()
       ];
-
-      // Sort both lists so order doesn't matter
-      const sortedCorrect = [...correctWords].sort();
-      const sortedInputs = [...inputs].sort();
-
-      // Check if they match
-      const isMatch = JSON.stringify(sortedCorrect) === JSON.stringify(sortedInputs);
-
-      // 🔽 EDIT THESE MESSAGES 🔽
+      const isMatch = JSON.stringify([...correctWords].sort()) === JSON.stringify([...inputs].sort());
       const successMessage = "在Складка RGB";
       const failMessage = "...";
-
       document.getElementById("msg").innerHTML = isMatch ? successMessage : failMessage;
+    }
+
+    function checkSecret() {
+      const secretWords = ["Alizarin", "Crimson"];
+      const sInputs = [
+        document.getElementById("s1").value.trim().toLowerCase(),
+        document.getElementById("s2").value.trim().toLowerCase()
+      ];
+      const isMatch = JSON.stringify([...secretWords].sort()) === JSON.stringify([...sInputs].sort());
+      document.getElementById("secretMsg").innerHTML = isMatch
+        ? "desperation"
+        : "nothinghappens";
     }
   </script>
 
-  <!-- SECRET SECTION -->
-<div id="secretBox" style="margin-top: 500px; padding: 20px; border: 2px solid #e32636; border-radius: 10px; background: #111; color: #fff; text-align: center;">
-  <h3 style="color: #e32636;">GETTINGCLOSER</h3>
-  <input id="s1" placeholder="WORD 1" style="padding: 6px 10px; margin: 4px; background:#222; color:#fff; border:1px solid #e32636; border-radius:5px;">
-  <input id="s2" placeholder="WORD 2" style="padding: 6px 10px; margin: 4px; background:#222; color:#fff; border:1px solid #e32636; border-radius:5px;">
-  <br><br>
-  <button onclick="checkSecret()" style="padding: 6px 12px; background:#e32636; color:#fff; border:none; border-radius:5px; cursor:pointer;">Unlock</button>
-  <p id="secretMsg"></p>
-</div>
-
-<script>
-  function checkSecret() {
-    const secretWords = ["Alizarin", "Crimson"]; // the correct words
-    const inputs = [
-      document.getElementById("s1").value.trim().toLowerCase(),
-      document.getElementById("s2").value.trim().toLowerCase()
-    ];
-    
-    const isMatch = JSON.stringify([...secretWords].sort()) === JSON.stringify([...inputs].sort());
-    
-    document.getElementById("secretMsg").innerHTML = isMatch 
-      ? "desperation01" 
-      : "❌ Nothing happens...";
-  }
-</script>
-  
 </body>
 </html>
