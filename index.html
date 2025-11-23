@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>3-Word Puzzle</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      text-align: center;
+    }
+    input {
+      margin: 6px;
+      padding: 6px 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h2>Enter the three magic words:</h2>
+
+  <input id="w1" placeholder="ONE">
+  <input id="w2" placeholder="TWO">
+  <input id="w3" placeholder="THREE">
+  <br><br>
+  <button onclick="check()">Submit</button>
+
+  <p id="msg"></p>
+
+  <script>
+    function check() {
+      // 🔽 EDIT YOUR THREE CORRECT WORDS HERE (lowercase) 🔽
+      const correctWords = ["clubstep", "silent", "unknown"];
+
+      // Get player inputs, lowercase them
+      const inputs = [
+        document.getElementById("w1").value.trim().toLowerCase(),
+        document.getElementById("w2").value.trim().toLowerCase(),
+        document.getElementById("w3").value.trim().toLowerCase()
+      ];
+
+      // Sort both lists so order doesn't matter
+      const sortedCorrect = [...correctWords].sort();
+      const sortedInputs = [...inputs].sort();
+
+      // Check if they match
+      const isMatch = JSON.stringify(sortedCorrect) === JSON.stringify(sortedInputs);
+
+      // 🔽 EDIT THESE MESSAGES 🔽
+      const successMessage = "在Складка";
+      const failMessage = "...";
+
+      document.getElementById("msg").innerHTML = isMatch ? successMessage : failMessage;
+    }
+  </script>
+
+</body>
+</html>
